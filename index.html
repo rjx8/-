@@ -1,48 +1,1129 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="dark">
 <head>
     <meta charset="UTF-8">
-    <title>جامعة الملك فهد للبترول والمعادن</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>العد التنازلي | اختبار التحصيلي 2026</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ===== Theme Variables ===== */
+        html.dark {
+            --bg-from: #060d18;
+            --bg-mid: #0b1527;
+            --bg-to: #101f3c;
+            --surface: rgba(255, 255, 255, 0.055);
+            --surface-raised: rgba(255, 255, 255, 0.09);
+            --surface-border: rgba(255, 255, 255, 0.08);
+            --border-accent: rgba(251, 191, 36, 0.3);
+            --text-1: #f1f5f9;
+            --text-2: #94a3b8;
+            --text-3: #64748b;
+            --accent: #fbbf24;
+            --accent-deep: #f59e0b;
+            --accent-glow: rgba(251, 191, 36, 0.18);
+            --success: #34d399;
+            --success-bg: rgba(52, 211, 153, 0.12);
+            --danger: #f87171;
+            --danger-bg: rgba(248, 113, 113, 0.1);
+            --info: #60a5fa;
+            --info-bg: rgba(96, 165, 250, 0.1);
+            --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --orb-a: rgba(251, 191, 36, 0.05);
+            --orb-b: rgba(59, 130, 246, 0.04);
+            --select-bg: rgba(255, 255, 255, 0.07);
+            --input-bg: rgba(255, 255, 255, 0.06);
+            --progress-bg: rgba(255, 255, 255, 0.06);
+            --progress-track: rgba(255, 255, 255, 0.03);
+        }
+
+        html:not(.dark) {
+            --bg-from: #f7f9fc;
+            --bg-mid: #edf1f7;
+            --bg-to: #dce4ef;
+            --surface: rgba(255, 255, 255, 0.72);
+            --surface-raised: rgba(255, 255, 255, 0.88);
+            --surface-border: rgba(15, 23, 42, 0.07);
+            --border-accent: rgba(180, 83, 9, 0.3);
+            --text-1: #0f172a;
+            --text-2: #475569;
+            --text-3: #94a3b8;
+            --accent: #d97706;
+            --accent-deep: #b45309;
+            --accent-glow: rgba(217, 119, 6, 0.1);
+            --success: #059669;
+            --success-bg: rgba(5, 150, 105, 0.1);
+            --danger: #dc2626;
+            --danger-bg: rgba(220, 38, 38, 0.07);
+            --info: #2563eb;
+            --info-bg: rgba(37, 99, 235, 0.07);
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --orb-a: rgba(251, 191, 36, 0.08);
+            --orb-b: rgba(59, 130, 246, 0.06);
+            --select-bg: rgba(255, 255, 255, 0.8);
+            --input-bg: rgba(255, 255, 255, 0.9);
+            --progress-bg: rgba(0, 0, 0, 0.04);
+            --progress-track: rgba(0, 0, 0, 0.02);
+        }
+
+        /* ===== Base ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(165deg, var(--bg-from), var(--bg-mid) 50%, var(--bg-to));
+            color: var(--text-1);
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== Background Orbs ===== */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .orb-1 {
+            width: 520px; height: 520px;
+            background: var(--orb-a);
+            top: -120px; right: -100px;
+            animation: drift 22s ease-in-out infinite;
+        }
+        .orb-2 {
+            width: 420px; height: 420px;
+            background: var(--orb-b);
+            bottom: -60px; left: -80px;
+            animation: drift 28s ease-in-out infinite reverse;
+        }
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0); }
+            33% { transform: translate(25px, -18px); }
+            66% { transform: translate(-18px, 22px); }
+        }
+
+        /* ===== Layout ===== */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 32px 16px 48px;
+        }
+        @media (min-width: 640px) {
+            .container { padding: 48px 16px 60px; }
+        }
+
+        /* ===== Glass Cards ===== */
+        .glass {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--surface-border);
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        @supports not (backdrop-filter: blur(20px)) {
+            .glass { background: var(--bg-mid); }
+        }
+
+        /* ===== Hero Timer Card ===== */
+        .timer-hero {
+            border-color: var(--border-accent);
+            box-shadow: var(--card-shadow), 0 0 50px var(--accent-glow);
+            position: relative;
+            overflow: hidden;
+        }
+        .timer-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        /* ===== Days Number ===== */
+        .days-num {
+            font-size: clamp(80px, 20vw, 150px);
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+            text-shadow: 0 0 70px var(--accent-glow);
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -2px;
+        }
+        .days-label {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-2);
+            margin-top: 4px;
+        }
+
+        /* ===== Sub Timer Boxes ===== */
+        .sub-box {
+            background: var(--surface-raised);
+            border: 1px solid var(--surface-border);
+            border-radius: 14px;
+            padding: 14px 20px;
+            min-width: 80px;
+            text-align: center;
+        }
+        .sub-num {
+            font-size: clamp(26px, 5.5vw, 40px);
+            font-weight: 700;
+            color: var(--text-1);
+            font-variant-numeric: tabular-nums;
+            line-height: 1;
+        }
+        .sub-label {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--text-3);
+            margin-top: 4px;
+        }
+
+        /* ===== Badges ===== */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .badge-wait { background: var(--info-bg); color: var(--info); }
+        .badge-live { background: var(--success-bg); color: var(--success); animation: pulse-badge 2s ease-in-out infinite; }
+        .badge-done { background: var(--danger-bg); color: var(--danger); }
+        @keyframes pulse-badge {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.65; }
+        }
+
+        /* ===== Dropdowns & Inputs ===== */
+        .sel, .plan-input {
+            appearance: none;
+            -webkit-appearance: none;
+            background: var(--select-bg);
+            border: 1px solid var(--surface-border);
+            color: var(--text-1);
+            border-radius: 14px;
+            font-size: 16px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .sel {
+            padding: 14px 18px 14px 40px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none'%3E%3Cpath d='M3 4.5L6 7.5L9 4.5' stroke='%2394a3b8' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 16px center;
+        }
+        .sel option {
+            background: var(--bg-from);
+            color: var(--text-1);
+        }
+        .plan-input {
+            padding: 14px 18px;
+            background: var(--input-bg);
+            cursor: text;
+            font-variant-numeric: tabular-nums;
+        }
+        .plan-input::placeholder {
+            color: var(--text-3);
+            font-weight: 400;
+        }
+        .sel:focus, .plan-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        /* ===== Period Cards ===== */
+        .period-num {
+            font-size: clamp(40px, 9vw, 60px);
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+        .period-sub {
+            font-size: clamp(18px, 4vw, 24px);
+            font-weight: 700;
+            color: var(--text-1);
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ===== Toggle Section ===== */
+        .expandable {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .expandable.open { max-height: 4000px; }
+
+        /* ===== Region Cards ===== */
+        .r-card {
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 14px;
+            padding: 14px 16px;
+            transition: background 0.2s;
+        }
+        .r-card:hover { background: var(--surface-raised); }
+
+        /* ===== Theme Toggle Button ===== */
+        .theme-btn {
+            width: 46px; height: 46px;
+            border-radius: 14px;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.2s, transform 0.2s;
+            flex-shrink: 0;
+        }
+        .theme-btn:hover { background: var(--surface-raised); transform: scale(1.06); }
+
+        /* ===== Animations ===== */
+        @keyframes riseIn {
+            from { opacity: 0; transform: translateY(28px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .anim { animation: riseIn 0.6s ease-out forwards; opacity: 0; }
+        .d1 { animation-delay: 0.08s; }
+        .d2 { animation-delay: 0.16s; }
+        .d3 { animation-delay: 0.24s; }
+        .d4 { animation-delay: 0.32s; }
+        .d5 { animation-delay: 0.40s; }
+        .d6 { animation-delay: 0.48s; }
+
+        /* ===== Completed State ===== */
+        .hero-done .days-num {
+            color: var(--success);
+            text-shadow: 0 0 60px var(--success-bg);
+        }
+
+        /* ===== Colon ===== */
+        .colon {
+            font-size: clamp(20px, 4vw, 32px);
+            font-weight: 700;
+            color: var(--text-3);
+            align-self: flex-start;
+            padding-top: 12px;
+        }
+
+        /* ===== Section Title ===== */
+        .section-title {
+            font-size: clamp(18px, 4vw, 22px);
+            font-weight: 800;
+            color: var(--text-1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .section-title i { color: var(--accent); }
+
+        /* ===== Toggle Button ===== */
+        .toggle-btn {
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 20px;
+            padding: 14px 20px;
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--text-2);
+            font-size: 15px;
+            font-weight: 600;
+            font-family: 'Cairo', sans-serif;
+            transition: background 0.2s;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: var(--card-shadow);
+        }
+        .toggle-btn:hover { background: var(--surface-raised); }
+        .toggle-btn i:last-child { transition: transform 0.3s; }
+
+        /* ===== Study Plan Section ===== */
+        .plan-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        @media (max-width: 420px) {
+            .plan-grid { grid-template-columns: 1fr; }
+        }
+
+        .plan-card {
+            background: var(--surface-raised);
+            border: 1px solid var(--surface-border);
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+        }
+        .plan-card-full {
+            grid-column: 1 / -1;
+        }
+        .plan-card-value {
+            font-size: clamp(28px, 7vw, 42px);
+            font-weight: 800;
+            font-variant-numeric: tabular-nums;
+            line-height: 1.1;
+        }
+        .plan-card-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-2);
+            margin-top: 4px;
+        }
+
+        /* ===== Progress Bar ===== */
+        .progress-wrap {
+            background: var(--progress-track);
+            border-radius: 12px;
+            height: 14px;
+            overflow: hidden;
+            position: relative;
+        }
+        .progress-bar {
+            height: 100%;
+            border-radius: 12px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-deep));
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .plan-result-card {
+            background: var(--surface);
+            border: 1px solid var(--border-accent);
+            border-radius: 18px;
+            padding: 24px 20px;
+            box-shadow: var(--card-shadow), 0 0 30px var(--accent-glow);
+        }
+
+        /* ===== Small badge inline ===== */
+        .badge-sm {
+            font-size: 11px;
+            padding: 3px 10px;
+        }
+
+        /* ===== Helper flex ===== */
+        .flex-center { display: flex; align-items: center; justify-content: center; }
+        .flex-between { display: flex; align-items: center; justify-content: space-between; }
+        .flex-col { display: flex; flex-direction: column; }
+        .gap-2 { gap: 8px; }
+        .gap-3 { gap: 12px; }
+        .gap-4 { gap: 16px; }
+        .mb-3 { margin-bottom: 12px; }
+        .mb-4 { margin-bottom: 16px; }
+        .mb-5 { margin-bottom: 20px; }
+        .mb-8 { margin-bottom: 32px; }
+        .mt-3 { margin-top: 12px; }
+        .mt-4 { margin-top: 16px; }
+        .text-center { text-align: center; }
+
+        /* ===== Responsive sub-box ===== */
+        @media (max-width: 640px) {
+            .sub-box { padding: 10px 14px; min-width: 68px; }
+        }
+
+        /* ===== Scrollbar ===== */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--surface-border); border-radius: 3px; }
+
+        /* ===== Plan exam select ===== */
+        .plan-exam-btns {
+            display: flex;
+            gap: 8px;
+        }
+        .plan-exam-btn {
+            flex: 1;
+            padding: 12px 10px;
+            border-radius: 14px;
+            border: 2px solid var(--surface-border);
+            background: var(--surface);
+            color: var(--text-2);
+            font-family: 'Cairo', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .plan-exam-btn:hover { border-color: var(--accent); color: var(--text-1); }
+        .plan-exam-btn.active {
+            border-color: var(--accent);
+            background: var(--accent-glow);
+            color: var(--accent);
+        }
+
+        /* ===== Divider ===== */
+        .divider {
+            height: 1px;
+            background: var(--surface-border);
+            margin: 16px 0;
+        }
+
+        /* ===== Hidden ===== */
+        .hidden { display: none !important; }
+    </style>
 </head>
 <body>
 
-<h1>جامعة الملك فهد للبترول والمعادن</h1>
+    <!-- Background Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
 
-<p>
-جامعة الملك فهد للبترول والمعادن تُعد من أفضل الجامعات في المملكة العربية السعودية،
-وتختص في مجالات الهندسة، العلوم، وتقنية المعلومات.
-</p>
+    <!-- Main Container -->
+    <div class="container">
 
-<h3>أهم كليات الجامعة</h3>
+        <!-- Header -->
+        <header class="flex-between mb-8 anim" style="align-items: flex-start;">
+            <div>
+                <h1 style="font-size: clamp(22px, 5vw, 28px); font-weight: 800; color: var(--text-1); line-height: 1.3;">
+                    <i class="fa-solid fa-graduation-cap" style="color: var(--accent); margin-left: 6px;"></i>
+                    اختبار التحصيلي 2026
+                </h1>
+                <p style="margin-top: 6px; font-size: 14px; font-weight: 500; color: var(--text-2);">
+                    العد التنازلي لمواعيد التسجيل والاختبار
+                </p>
+            </div>
+            <button class="theme-btn" id="themeBtn" aria-label="تبديل الوضع">
+                <i class="fa-solid fa-sun" id="themeIco"></i>
+            </button>
+        </header>
 
-<ol>
-    <li>كلية الهندسة</li>
-    <li>كلية العلوم</li>
-    <li>كلية الإدارة والاقتصاد</li>
-</ol>
+        <!-- Selection Area -->
+        <div class="glass mb-5 anim d1" style="padding: 20px 24px;">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 140px;">
+                        <label style="display: block; font-size: 14px; font-weight: 600; color: var(--text-2); margin-bottom: 8px;">
+                            <i class="fa-solid fa-user-group" style="color: var(--accent); font-size: 13px; margin-left: 4px;"></i>
+                            جنس المتقدم
+                        </label>
+                        <select id="genderSel" class="sel">
+                            <option value="male">طالب</option>
+                            <option value="female">طالبة</option>
+                        </select>
+                    </div>
+                    <div style="flex: 1; min-width: 140px;">
+                        <label style="display: block; font-size: 14px; font-weight: 600; color: var(--text-2); margin-bottom: 8px;">
+                            <i class="fa-solid fa-location-dot" style="color: var(--accent); font-size: 13px; margin-left: 4px;"></i>
+                            المنطقة
+                        </label>
+                        <select id="regionSel" class="sel">
+                            <option value="riyadh">الرياض</option>
+                            <option value="makkah">مكة المكرمة</option>
+                            <option value="madinah">المدينة المنورة</option>
+                            <option value="asir">عسير</option>
+                            <option value="qassim">القصيم</option>
+                            <option value="eastern">الشرقية</option>
+                            <option value="jazan">جازان</option>
+                            <option value="tabuk">تبوك</option>
+                            <option value="hail">حائل</option>
+                            <option value="jawf">الجوف</option>
+                            <option value="najran">نجران</option>
+                            <option value="baha">الباحة</option>
+                            <option value="northern">الحدود الشمالية</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<img src="https://upload.wikimedia.org/wikipedia/ar/archive/9/92/20170618213839%21%D8%B4%D8%B9%D8%A7%D8%B1_%D8%AC%D8%A7%D9%85%D8%B9%D8%A9_%D8%A7%D9%84%D9%85%D9%84%D9%83_%D9%81%D9%87%D8%AF_%D9%84%D9%84%D8%A8%D8%AA%D8%B1%D9%88%D9%84_%D9%88%D8%A7%D9%84%D9%85%D8%B9%D8%A7%D8%AF%D9%86.jpg"
-     alt="شعار جامعة الملك فهد للبترول والمعادن"
-     width="250">
+        <!-- Personal Timer -->
+        <div class="glass timer-hero mb-5 anim d2" id="heroCard" style="padding: 24px 32px;">
+            <div class="text-center mb-5">
+                <p style="font-size: 14px; font-weight: 600; color: var(--text-2); margin-bottom: 6px;" id="heroSub">
+                    موعد بدء التسجيل
+                </p>
+                <p style="font-size: clamp(18px, 4vw, 22px); font-weight: 700; color: var(--text-1);" id="heroDate">&mdash;</p>
+                <div class="mt-3" id="heroBadge"></div>
+            </div>
 
-<p>
-للمزيد من المعلومات:
-<a href="https://admissions.kfupm.edu.sa/" target="_blank">
-موقع جامعة الملك فهد للبترول والمعادن
-</a>
-</p>
+            <div class="text-center mb-5" id="heroCountdown">
+                <div class="days-num" id="hDays">&mdash;</div>
+                <div class="days-label" id="hDaysLbl">يوم متبقي</div>
+            </div>
 
-<h2>تسجيل حساب جديد</h2>
+            <div class="flex-center gap-2" id="heroSubs" style="gap: 8px;">
+                <div class="sub-box">
+                    <div class="sub-num" id="hH">00</div>
+                    <div class="sub-label">ساعة</div>
+                </div>
+                <span class="colon">:</span>
+                <div class="sub-box">
+                    <div class="sub-num" id="hM">00</div>
+                    <div class="sub-label">دقيقة</div>
+                </div>
+                <span class="colon">:</span>
+                <div class="sub-box">
+                    <div class="sub-num" id="hS">00</div>
+                    <div class="sub-label">ثانية</div>
+                </div>
+            </div>
+        </div>
 
-<form>
-اسم المستخدم:<br>
-<input type="text"><br><br>
+        <!-- Toggle All Dates -->
+        <button class="toggle-btn mb-5 anim d3" id="allToggle">
+            <i class="fa-solid fa-calendar-days" style="color: var(--accent);"></i>
+            عرض جميع المواعيد
+            <i class="fa-solid fa-chevron-down" id="allChev"></i>
+        </button>
 
-كلمة المرور:<br>
-<input type="password"><br><br>
+        <!-- All Dates Section -->
+        <div class="expandable mb-5" id="allWrap">
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px;" id="allGrid"></div>
+        </div>
 
-<input type="submit" value="إرسال">
-</form>
+        <!-- Exam Periods -->
+        <div class="anim d4 mb-8">
+            <h2 class="section-title">
+                <i class="fa-solid fa-file-pen"></i>
+                فترات الاختبار
+            </h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <!-- Period 1 -->
+                <div class="glass text-center" id="p1Card" style="padding: 20px 24px;">
+                    <p style="font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: 4px;">الفترة الأولى</p>
+                    <p style="font-size: 15px; font-weight: 700; color: var(--text-1); margin-bottom: 8px;">13 — 17 مايو 2026</p>
+                    <div class="mb-3" id="p1Badge"></div>
+                    <div class="period-num" id="p1Days">&mdash;</div>
+                    <div style="font-size: 14px; font-weight: 500; color: var(--text-2); margin-top: 4px;" id="p1Lbl">يوم متبقي</div>
+                    <div class="flex-center gap-4 mt-3" style="gap: 16px;" id="p1Sub">
+                        <div><span class="period-sub" id="p1H">00</span><span style="font-size: 12px; font-weight: 500; color: var(--text-3); margin-right: 2px;">س</span></div>
+                        <div><span class="period-sub" id="p1M">00</span><span style="font-size: 12px; font-weight: 500; color: var(--text-3); margin-right: 2px;">د</span></div>
+                        <div><span class="period-sub" id="p1S">00</span><span style="font-size: 12px; font-weight: 500; color: var(--text-3); margin-right: 2px;">ث</span></div>
+                    </div>
+                </div>
+                <!-- Period 2 -->
+                <div class="glass text-center" id="p2Card" style="padding: 20px 24px;">
+                    <p style="font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: 4px;">الفترة الثانية</p>
+                    <p style="font-size: 15px; font-weight: 700; color: var(--text-1); margin-bottom: 8px;">5 — 9 يونيو 2026</p>
+                    <div class="mb-3" id="p2Badge"></div>
+                    <div class="period-num" id="p2Days">&mdash;</div>
+                    <div style="font-size: 14px; font-weight: 500; color: var(--text-2); margin-top: 4px;" id="p2Lbl">يوم متبقي</div>
+                    <div class="flex-center gap-4 mt-3" style="gap: 16px;" id="p2Sub">
+                        <div><span class="period-sub" id="p2H">00</span><span style="font-size: 12px; font-weight: 500; color: var(--text-3); margin-right: 2px;">س</span></div>
+                        <div><span class="period-sub" id="p2M">00</span><span style="font-size: 12px; font-weight: 500; color: var(--text-3); margin-right: 2px;">د</span></div>
+                        <div><span class="period-sub" id="p2S">00</span><span style="font-size: 12px; font-weight: 500; color: var(--text-3); margin-right: 2px;">ث</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!-- ============================================================
+             NEW: Study Plan Section (الجداول)
+        ============================================================ -->
+        <div class="anim d5 mb-8">
+            <h2 class="section-title">
+                <i class="fa-solid fa-table-list"></i>
+                الجداول
+            </h2>
+            <div class="glass" style="padding: 24px;">
+
+                <!-- Step 1: Choose exam period -->
+                <div class="mb-4">
+                    <label style="display: block; font-size: 14px; font-weight: 600; color: var(--text-2); margin-bottom: 10px;">
+                        <i class="fa-solid fa-bullseye" style="color: var(--accent); font-size: 13px; margin-left: 4px;"></i>
+                        اختر فترة الاختبار المستهدفة
+                    </label>
+                    <div class="plan-exam-btns">
+                        <button class="plan-exam-btn active" data-period="p1" id="planP1Btn">
+                            <div style="font-size: 15px;">الفترة الأولى</div>
+                            <div style="font-size: 12px; color: var(--text-3); margin-top: 2px;">13 مايو</div>
+                        </button>
+                        <button class="plan-exam-btn" data-period="p2" id="planP2Btn">
+                            <div style="font-size: 15px;">الفترة الثانية</div>
+                            <div style="font-size: 12px; color: var(--text-3); margin-top: 2px;">5 يونيو</div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- Step 2: Total days -->
+                <div class="mb-4">
+                    <label style="display: block; font-size: 14px; font-weight: 600; color: var(--text-2); margin-bottom: 8px;">
+                        <i class="fa-solid fa-calendar-week" style="color: var(--accent); font-size: 13px; margin-left: 4px;"></i>
+                        عدد أيام خطة المذاكرة
+                    </label>
+                    <input type="number" class="plan-input" id="planTotal" min="1" max="365" placeholder="مثال: 77 يوم" inputmode="numeric">
+                </div>
+
+                <!-- Step 3: Completed days (appears after total) -->
+                <div class="mb-4 hidden" id="planCompletedWrap">
+                    <label style="display: block; font-size: 14px; font-weight: 600; color: var(--text-2); margin-bottom: 8px;">
+                        <i class="fa-solid fa-check-double" style="color: var(--success); font-size: 13px; margin-left: 4px;"></i>
+                        كم يوم أنجزت من الخطة؟
+                    </label>
+                    <input type="number" class="plan-input" id="planDone" min="0" placeholder="مثال: 27 يوم" inputmode="numeric">
+                </div>
+
+                <!-- Results -->
+                <div class="hidden" id="planResults">
+                    <div class="divider"></div>
+
+                    <!-- Progress bar -->
+                    <div class="mb-4">
+                        <div class="flex-between mb-3" style="margin-bottom: 8px;">
+                            <span style="font-size: 13px; font-weight: 600; color: var(--text-2);">تقدمك في الخطة</span>
+                            <span style="font-size: 14px; font-weight: 700; color: var(--accent);" id="planPct">0%</span>
+                        </div>
+                        <div class="progress-wrap">
+                            <div class="progress-bar" id="planBar" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Stats grid -->
+                    <div class="plan-grid mb-4">
+                        <div class="plan-card">
+                            <div class="plan-card-value" style="color: var(--success);" id="planDoneStat">0</div>
+                            <div class="plan-card-label">
+                                <i class="fa-solid fa-circle-check" style="color: var(--success);"></i>
+                                أيام منجزة
+                            </div>
+                        </div>
+                        <div class="plan-card">
+                            <div class="plan-card-value" style="color: var(--info);" id="planRemainStat">0</div>
+                            <div class="plan-card-label">
+                                <i class="fa-solid fa-hourglass-half" style="color: var(--info);"></i>
+                                أيام متبقية
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Finish date result -->
+                    <div class="plan-result-card text-center">
+                        <div style="font-size: 13px; font-weight: 600; color: var(--text-2); margin-bottom: 8px;">
+                            <i class="fa-solid fa-flag-checkered" style="color: var(--accent); margin-left: 4px;"></i>
+                            تاريخ انتهاء الخطة
+                        </div>
+                        <div style="font-size: clamp(20px, 5vw, 28px); font-weight: 800; color: var(--accent);" id="planFinishDate">&mdash;</div>
+
+                        <div class="divider"></div>
+
+                        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                            <div style="text-align: center;">
+                                <div style="font-size: clamp(24px, 6vw, 36px); font-weight: 800; color: var(--text-1);" id="planDaysToExam">0</div>
+                                <div style="font-size: 12px; font-weight: 500; color: var(--text-2);">يوم متبقي للاختبار بعد الخطة</div>
+                            </div>
+                        </div>
+
+                        <div class="mt-3" id="planVerdict"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        /* ============================================================
+           DATA
+        ============================================================ */
+        var DATES = {
+            male: {
+                riyadh: '2026-02-23', makkah: '2026-02-24',
+                madinah: '2026-02-25', asir: '2026-02-25', qassim: '2026-02-25',
+                eastern: '2026-02-26', jazan: '2026-02-26',
+                tabuk: '2026-03-01', hail: '2026-03-01', jawf: '2026-03-01',
+                najran: '2026-03-01', baha: '2026-03-01', northern: '2026-03-01'
+            },
+            female: {
+                riyadh: '2026-03-02', makkah: '2026-03-03',
+                madinah: '2026-03-04', asir: '2026-03-04', qassim: '2026-03-04',
+                eastern: '2026-03-05', jazan: '2026-03-05',
+                tabuk: '2026-03-06', hail: '2026-03-06', jawf: '2026-03-06',
+                najran: '2026-03-06', baha: '2026-03-06', northern: '2026-03-06'
+            }
+        };
+
+        var REGION = {
+            riyadh: 'الرياض', makkah: 'مكة المكرمة', madinah: 'المدينة المنورة',
+            asir: 'عسير', qassim: 'القصيم', eastern: 'الشرقية', jazan: 'جازان',
+            tabuk: 'تبوك', hail: 'حائل', jawf: 'الجوف',
+            najran: 'نجران', baha: 'الباحة', northern: 'الحدود الشمالية'
+        };
+
+        var EXAMS = {
+            p1: { start: '2026-05-13', end: '2026-05-17' },
+            p2: { start: '2026-06-05', end: '2026-06-09' }
+        };
+
+        var MO = {
+            1: 'يناير', 2: 'فبراير', 3: 'مارس', 4: 'أبريل',
+            5: 'مايو', 6: 'يونيو', 7: 'يوليو', 8: 'أغسطس',
+            9: 'سبتمبر', 10: 'أكتوبر', 11: 'نوفمبر', 12: 'ديسمبر'
+        };
+
+        /* ============================================================
+           UTILITIES
+        ============================================================ */
+        function ts(dateStr) {
+            return Date.parse(dateStr + 'T00:00:00+03:00');
+        }
+        function tsEnd(dateStr) {
+            return Date.parse(dateStr + 'T23:59:59+03:00');
+        }
+        function fmtDate(s) {
+            var p = s.split('-');
+            return parseInt(p[2], 10) + ' ' + MO[parseInt(p[1], 10)] + ' ' + p[0];
+        }
+        function diff(target) {
+            var ms = target - Date.now();
+            if (ms <= 0) { return { total: 0, d: 0, h: 0, m: 0, s: 0 }; }
+            return {
+                total: ms,
+                d: Math.floor(ms / 86400000),
+                h: Math.floor((ms % 86400000) / 3600000),
+                m: Math.floor((ms % 3600000) / 60000),
+                s: Math.floor((ms % 60000) / 1000)
+            };
+        }
+        function pad(n) { return String(n).padStart(2, '0'); }
+
+        function badgeHtml(type, text) {
+            var cls = { wait: 'badge-wait', live: 'badge-live', done: 'badge-done' };
+            var ico = { wait: 'fa-clock', live: 'fa-circle-check', done: 'fa-circle-xmark' };
+            return '<span class="badge ' + cls[type] + '"><i class="fa-solid ' + ico[type] + '"></i> ' + text + '</span>';
+        }
+
+        function addDays(date, days) {
+            var d = new Date(date);
+            d.setDate(d.getDate() + days);
+            return d;
+        }
+
+        function dateToStr(d) {
+            var y = d.getFullYear();
+            var m = String(d.getMonth() + 1).padStart(2, '0');
+            var day = String(d.getDate()).padStart(2, '0');
+            return y + '-' + m + '-' + day;
+        }
+
+        function daysBetween(d1, d2) {
+            var ms = d2.getTime() - d1.getTime();
+            return Math.floor(ms / 86400000);
+        }
+
+        /* ============================================================
+           THEME TOGGLE
+        ============================================================ */
+        var themeBtn = document.getElementById('themeBtn');
+        var themeIco = document.getElementById('themeIco');
+
+        function applyThemeIcon() {
+            var dark = document.documentElement.classList.contains('dark');
+            themeIco.className = dark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        }
+
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            document.documentElement.classList.remove('dark');
+        }
+        applyThemeIcon();
+
+        themeBtn.addEventListener('click', function () {
+            document.documentElement.classList.toggle('dark');
+            applyThemeIcon();
+        });
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+            if (e.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            applyThemeIcon();
+        });
+
+        /* ============================================================
+           DROPDOWN REFS
+        ============================================================ */
+        var genderSel = document.getElementById('genderSel');
+        var regionSel = document.getElementById('regionSel');
+
+        function selDate() {
+            return DATES[genderSel.value][regionSel.value];
+        }
+
+        genderSel.addEventListener('change', tick);
+        regionSel.addEventListener('change', tick);
+
+        /* ============================================================
+           PERSONAL TIMER
+        ============================================================ */
+        function updateHero() {
+            var dateStr = selDate();
+            var target = ts(dateStr);
+            var d = diff(target);
+            var card = document.getElementById('heroCard');
+
+            document.getElementById('heroDate').textContent = fmtDate(dateStr);
+
+            if (d.total > 0) {
+                card.classList.remove('hero-done');
+                document.getElementById('hDays').textContent = d.d;
+                document.getElementById('hDaysLbl').textContent = 'يوم متبقي';
+                document.getElementById('hH').textContent = pad(d.h);
+                document.getElementById('hM').textContent = pad(d.m);
+                document.getElementById('hS').textContent = pad(d.s);
+                document.getElementById('heroSubs').style.display = '';
+                document.getElementById('heroBadge').innerHTML = badgeHtml('wait', 'لم يبدأ بعد');
+            } else {
+                card.classList.add('hero-done');
+                document.getElementById('hDays').textContent = '\u2713';
+                document.getElementById('hDaysLbl').textContent = 'بدأ التسجيل';
+                document.getElementById('heroSubs').style.display = 'none';
+                document.getElementById('heroBadge').innerHTML = badgeHtml('live', 'التسجيل مفتوح الآن');
+            }
+        }
+
+        /* ============================================================
+           EXAM PERIODS
+        ============================================================ */
+        function updatePeriods() {
+            var now = Date.now();
+            var keys = ['p1', 'p2'];
+            for (var i = 0; i < keys.length; i++) {
+                var k = keys[i];
+                var n = i + 1;
+                var startTs = ts(EXAMS[k].start);
+                var endTs = tsEnd(EXAMS[k].end);
+                var d = diff(startTs);
+
+                var daysEl = document.getElementById(k + 'Days');
+                var lblEl = document.getElementById(k + 'Lbl');
+                var badgeEl = document.getElementById(k + 'Badge');
+                var subEl = document.getElementById(k + 'Sub');
+
+                if (now < startTs) {
+                    daysEl.textContent = d.d;
+                    lblEl.textContent = 'يوم متبقي';
+                    document.getElementById('p' + n + 'H').textContent = pad(d.h);
+                    document.getElementById('p' + n + 'M').textContent = pad(d.m);
+                    document.getElementById('p' + n + 'S').textContent = pad(d.s);
+                    subEl.style.display = '';
+                    badgeEl.innerHTML = badgeHtml('wait', 'لم تبدأ');
+                } else if (now <= endTs) {
+                    daysEl.textContent = '\u23F3';
+                    lblEl.textContent = 'الاختبار جارٍ الآن';
+                    subEl.style.display = 'none';
+                    badgeEl.innerHTML = badgeHtml('live', 'جارٍ الآن');
+                } else {
+                    daysEl.textContent = '\u2713';
+                    lblEl.textContent = 'انتهت فترة الاختبار';
+                    subEl.style.display = 'none';
+                    badgeEl.innerHTML = badgeHtml('done', 'انتهت');
+                }
+            }
+        }
+
+        /* ============================================================
+           ALL DATES GRID
+        ============================================================ */
+        function buildGrid() {
+            var grid = document.getElementById('allGrid');
+            var html = '';
+            var keys = Object.keys(REGION);
+
+            for (var i = 0; i < keys.length; i++) {
+                var rk = keys[i];
+                var mDate = DATES.male[rk];
+                var fDate = DATES.female[rk];
+                var mDiff = diff(ts(mDate));
+                var fDiff = diff(ts(fDate));
+
+                var mBadge = mDiff.total > 0
+                    ? '<span class="badge badge-wait badge-sm"><i class="fa-solid fa-clock"></i> باقي ' + mDiff.d + ' يوم</span>'
+                    : '<span class="badge badge-live badge-sm"><i class="fa-solid fa-circle-check"></i> مفتوح</span>';
+
+                var fBadge = fDiff.total > 0
+                    ? '<span class="badge badge-wait badge-sm"><i class="fa-solid fa-clock"></i> باقي ' + fDiff.d + ' يوم</span>'
+                    : '<span class="badge badge-live badge-sm"><i class="fa-solid fa-circle-check"></i> مفتوح</span>';
+
+                html += '<div class="r-card">' +
+                    '<div style="font-weight:700;font-size:16px;color:var(--text-1);margin-bottom:12px;">' +
+                        '<i class="fa-solid fa-map-pin" style="color:var(--accent);font-size:12px;margin-left:4px;"></i> ' +
+                        REGION[rk] +
+                    '</div>' +
+                    '<div class="flex-col gap-2">' +
+                        '<div class="flex-between" style="flex-wrap:wrap;gap:4px;">' +
+                            '<span style="font-size:14px;color:var(--text-2);"><i class="fa-solid fa-mars" style="color:var(--info);margin-left:4px;"></i> طلاب \u2014 ' + fmtDate(mDate) + '</span>' +
+                            mBadge +
+                        '</div>' +
+                        '<div class="flex-between" style="flex-wrap:wrap;gap:4px;">' +
+                            '<span style="font-size:14px;color:var(--text-2);"><i class="fa-solid fa-venus" style="color:#f472b6;margin-left:4px;"></i> طالبات \u2014 ' + fmtDate(fDate) + '</span>' +
+                            fBadge +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
+            }
+
+            grid.innerHTML = html;
+        }
+
+        /* ============================================================
+           TOGGLE ALL DATES
+        ============================================================ */
+        var allToggle = document.getElementById('allToggle');
+        var allWrap = document.getElementById('allWrap');
+        var allChev = document.getElementById('allChev');
+        var allOpen = false;
+
+        allToggle.addEventListener('click', function () {
+            allOpen = !allOpen;
+            allWrap.classList.toggle('open');
+            allChev.style.transform = allOpen ? 'rotate(180deg)' : '';
+            if (allOpen) { buildGrid(); }
+        });
+
+        /* ============================================================
+           STUDY PLAN (الجداول)
+        ============================================================ */
+        var selectedPeriod = 'p1';
+        var planP1Btn = document.getElementById('planP1Btn');
+        var planP2Btn = document.getElementById('planP2Btn');
+        var planTotalInput = document.getElementById('planTotal');
+        var planDoneInput = document.getElementById('planDone');
+        var planCompletedWrap = document.getElementById('planCompletedWrap');
+        var planResults = document.getElementById('planResults');
+
+        function selectPeriod(period) {
+            selectedPeriod = period;
+            planP1Btn.classList.toggle('active', period === 'p1');
+            planP2Btn.classList.toggle('active', period === 'p2');
+            calculatePlan();
+        }
+
+        planP1Btn.addEventListener('click', function () { selectPeriod('p1'); });
+        planP2Btn.addEventListener('click', function () { selectPeriod('p2'); });
+
+        planTotalInput.addEventListener('input', function () {
+            var total = parseInt(planTotalInput.value, 10);
+            if (total > 0) {
+                planCompletedWrap.classList.remove('hidden');
+                planDoneInput.max = total;
+            } else {
+                planCompletedWrap.classList.add('hidden');
+                planResults.classList.add('hidden');
+            }
+            calculatePlan();
+        });
+
+        planDoneInput.addEventListener('input', function () {
+            calculatePlan();
+        });
+
+        function calculatePlan() {
+            var total = parseInt(planTotalInput.value, 10);
+            if (!total || total <= 0) {
+                planResults.classList.add('hidden');
+                return;
+            }
+
+            var done = parseInt(planDoneInput.value, 10) || 0;
+            if (done < 0) { done = 0; }
+            if (done > total) { done = total; }
+
+            var remaining = total - done;
+            var pct = Math.round((done / total) * 100);
+
+            // Calculate finish date: today + remaining days
+            var today = new Date();
+            today.setHours(0, 0, 0, 0);
+            var finishDate = addDays(today, remaining);
+
+            // Exam start date
+            var examStartStr = EXAMS[selectedPeriod].start;
+            var examStart = new Date(examStartStr + 'T00:00:00+03:00');
+
+            // Days between finish and exam
+            var daysAfterPlan = daysBetween(finishDate, examStart);
+
+            // Show results
+            planResults.classList.remove('hidden');
+
+            // Progress bar
+            document.getElementById('planPct').textContent = pct + '%';
+            document.getElementById('planBar').style.width = pct + '%';
+
+            // Stats
+            document.getElementById('planDoneStat').textContent = done;
+            document.getElementById('planRemainStat').textContent = remaining;
+
+            // Finish date
+            var finishDateStr = dateToStr(finishDate);
+            document.getElementById('planFinishDate').textContent = fmtDate(finishDateStr);
+
+            // Days to exam
+            document.getElementById('planDaysToExam').textContent = Math.max(0, daysAfterPlan);
+
+            // Verdict
+            var verdictEl = document.getElementById('planVerdict');
+            if (remaining === 0) {
+                verdictEl.innerHTML = badgeHtml('live', 'أنهيت الخطة بالكامل! بالتوفيق');
+            } else if (daysAfterPlan > 14) {
+                verdictEl.innerHTML = '<span class="badge badge-live"><i class="fa-solid fa-circle-check"></i> ممتاز! عندك وقت كافي للمراجعة</span>';
+            } else if (daysAfterPlan > 3) {
+                verdictEl.innerHTML = '<span class="badge badge-wait"><i class="fa-solid fa-triangle-exclamation"></i> وقت ضيق، حاول تسرّع</span>';
+            } else if (daysAfterPlan >= 0) {
+                verdictEl.innerHTML = '<span class="badge badge-done"><i class="fa-solid fa-circle-exclamation"></i> الوقت شبه منتهي، ركّز!</span>';
+            } else {
+                verdictEl.innerHTML = '<span class="badge badge-done"><i class="fa-solid fa-circle-xmark"></i> الخطة تنتهي بعد الاختبار! قلّل الأيام أو سرّع</span>';
+            }
+        }
+
+        /* ============================================================
+           MAIN TICK
+        ============================================================ */
+        function tick() {
+            updateHero();
+            updatePeriods();
+        }
+
+        // Initial render
+        tick();
+        buildGrid();
+
+        // Every second
+        setInterval(tick, 1000);
+
+        // Rebuild all-dates grid every 60s
+        setInterval(function () {
+            if (allOpen) { buildGrid(); }
+        }, 60000);
+    </script>
 </body>
 </html>
